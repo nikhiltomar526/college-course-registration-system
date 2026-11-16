@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Debug Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      padding: 20px;
+    }
+    .debug-box {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 10px 0;
+      border-left: 4px solid #667eea;
+    }
+    .error { border-left-color: #f44336; color: #f44336; }
+    .success { border-left-color: #4CAF50; color: #4CAF50; }
+    code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>🔍 Portal Debug Console</h1>
+  
+  <div id="debugLog" class="debug-box">
+    <strong>Debug Log:</strong>
+    <div id="logContent" style="margin-top: 10px; font-family: monospace; font-size: 12px;"></div>
+  </div>
+
+  <script>
+    const logBox = document.getElementById('logContent');
+    
+    function log(msg, type = 'info') {
+      const timestamp = new Date().toLocaleTimeString();
+      const className = type === 'error' ? 'error' : (type === 'success' ? 'success' : '');
+      logBox.innerHTML += `<div class="${className}">[${timestamp}] ${msg}</div>`;
+      console.log(`[${timestamp}]`, msg);
+    }
+
+    log('Debug page loaded', 'success');
+
+    // Test 1: Can we load DSA?
+    log('Testing DSA.js...');
+  </script>
+
+  <script src="dsa.js"></script>
+  
+  <script>
+    log('DSA.js loaded successfully', 'success');
+    
+    // Test 2: Can we load app.js?
+    log('Testing App.js...');
+  </script>
+
+  <script src="app.js"></script>
+  
+  <script>
+    if (typeof portal !== 'undefined') {
+      log('portal object exists: ' + typeof portal, 'success');
+      log('Courses in system: ' + portal.getAllCourses().length, 'success');
+      log('Students in system: ' + portal.getAllStudents().length, 'success');
+    } else {
+      log('ERROR: portal object NOT found!', 'error');
+    }
+
+    log('Testing UI.js...');
+  </script>
+
+  <script src="ui.js"></script>
+  
+  <script>
+    if (typeof handleStudentLogin !== 'undefined') {
+      log('UI functions loaded successfully', 'success');
+    } else {
+      log('ERROR: UI functions NOT loaded!', 'error');
+    }
+
+    log('=== All Systems Ready ===', 'success');
+
+    // Simulate login
+    log('Attempting test login with 240101...');
+    try {
+      const result = portal.login('240101', 'student123', 'student');
+      if (result.success) {
+        log('Login successful for ' + result.user.name, 'success');
+      } else {
+        log('Login failed: ' + result.message, 'error');
+      }
+    } catch (e) {
+      log('Login error: ' + e.message, 'error');
+    }
+  </script>
+</body>
+</html>

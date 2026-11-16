@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>University Portal - Course Registration</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- LOGIN SCREEN -->
+  <div id="loginScreen" class="login-screen active">
+    <div class="login-container">
+      <div class="login-header">
+        <h1>🎓 University Portal</h1>
+        <p>Course Registration System</p>
+      </div>
+
+      <div class="login-tabs">
+        <button class="login-tab-btn active" data-tab="student">👤 Student Login</button>
+        <button class="login-tab-btn" data-tab="admin">⚙️ Admin Login</button>
+      </div>
+
+      <!-- Student Login Tab -->
+      <div id="studentLoginTab" class="login-tab-content active">
+        <form id="studentLoginForm" onsubmit="handleStudentLogin(event)">
+          <input type="text" id="studentRollNo" placeholder="Roll No (e.g., 240101)" required>
+          <input type="password" id="studentPassword" placeholder="Password" required>
+          <button type="submit" class="login-btn">Login</button>
+        </form>
+
+        <div class="demo-credentials">
+          <h3>📌 Demo Credentials</h3>
+          <div class="demo-card">
+            <p><strong>Roll No:</strong> 240101</p>
+            <p><strong>Password:</strong> student123</p>
+            <p style="font-size: 12px; color: #666;">Arjun Kumar (Fee Cleared)</p>
+          </div>
+          <div class="demo-card">
+            <p><strong>Roll No:</strong> 240102</p>
+            <p><strong>Password:</strong> student123</p>
+            <p style="font-size: 12px; color: #f44336;">Priya Sharma (Fee Pending)</p>
+          </div>
+          <div class="demo-card">
+            <p><strong>Roll No:</strong> 240103</p>
+            <p><strong>Password:</strong> student123</p>
+            <p style="font-size: 12px; color: #666;">Raj Patel (Fee Cleared)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin Login Tab -->
+      <div id="adminLoginTab" class="login-tab-content">
+        <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
+          <input type="text" id="adminUsername" placeholder="Username" value="admin" required>
+          <input type="password" id="adminPassword" placeholder="Password" value="admin123" required>
+          <button type="submit" class="login-btn">Login</button>
+        </form>
+
+        <div class="demo-credentials">
+          <h3>📌 Admin Demo Credentials</h3>
+          <div class="demo-card">
+            <p><strong>Username:</strong> admin</p>
+            <p><strong>Password:</strong> admin123</p>
+            <p style="font-size: 12px; color: #666;">Full admin access</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="loginError" class="login-error" style="display: none;"></div>
+
+      <button type="button" class="reset-btn" onclick="resetDemoData()">🔄 Reset Demo Data</button>
+    </div>
+  </div>
+
+  <!-- STUDENT PORTAL -->
+  <div id="studentPortal" class="portal student-portal">
+    <div class="portal-sidebar">
+      <div class="sidebar-header">
+        <h2>🎓 My Portal</h2>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+      </div>
+
+      <div class="user-info">
+        <div class="user-name" id="studentName">Student</div>
+        <div class="user-role">Student</div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-page="dashboard" onclick="navigateStudent('dashboard')">📊 Dashboard</button>
+        <button class="nav-item" data-page="courses" onclick="navigateStudent('courses')">📚 Course Catalog</button>
+        <button class="nav-item" data-page="mystatus" onclick="navigateStudent('mystatus')">📋 My Courses</button>
+        <button class="nav-item" data-page="timetable" onclick="navigateStudent('timetable')">📅 My Timetable</button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+        <button class="undo-btn" onclick="undoLastAction()">↩️ Undo</button>
+      </div>
+    </div>
+
+    <div class="portal-content">
+      <div class="content-header">
+        <h1 id="pageTitle">Dashboard</h1>
+        <div class="header-right">
+          <button class="notification-bell" onclick="toggleNotifications()">
+            🔔 <span id="notificationBadge" class="notification-badge"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Notification Panel -->
+      <div id="notificationPanel" class="notification-panel" style="display: none;">
+        <div class="notification-header">
+          <h3>Notifications</h3>
+          <button onclick="markAllNotificationsRead()">Mark all read</button>
+        </div>
+        <div id="notificationsList" class="notifications-list"></div>
+      </div>
+
+      <div id="studentContent" class="content-area"></div>
+    </div>
+  </div>
+
+  <!-- ADMIN PORTAL -->
+  <div id="adminPortal" class="portal admin-portal">
+    <div class="portal-sidebar">
+      <div class="sidebar-header">
+        <h2>⚙️ Admin Panel</h2>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+      </div>
+
+      <div class="user-info">
+        <div class="user-name">Administrator</div>
+        <div class="user-role">Admin</div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-page="dashboard" onclick="navigateAdmin('dashboard')">📊 Dashboard</button>
+        <button class="nav-item" data-page="approvals" onclick="navigateAdmin('approvals')">✅ Approvals</button>
+        <button class="nav-item" data-page="courses" onclick="navigateAdmin('courses')">📚 Courses</button>
+        <button class="nav-item" data-page="students" onclick="navigateAdmin('students')">👥 Students</button>
+        <button class="nav-item" data-page="notices" onclick="navigateAdmin('notices')">📢 Notices</button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+        <button class="undo-btn" onclick="undoLastAction()">↩️ Undo</button>
+      </div>
+    </div>
+
+    <div class="portal-content">
+      <div class="content-header">
+        <h1 id="adminPageTitle">Dashboard</h1>
+      </div>
+      <div id="adminContent" class="content-area"></div>
+    </div>
+  </div>
+
+  <!-- Syllabus Modal -->
+  <div id="syllabusModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="syllabusCourseCode">CS101</h2>
+        <button class="modal-close" onclick="closeSyllabusModal()">&times;</button>
+      </div>
+      <div id="syllabusBody" class="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Clash Warning Modal -->
+  <div id="clashModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>⚠️ Timetable Clash Detected</h2>
+        <button class="modal-close" onclick="closeClashModal()">&times;</button>
+      </div>
+      <div id="clashBody" class="modal-body">
+        <p id="clashMessage"></p>
+        <div class="modal-actions">
+          <button class="btn-secondary" onclick="closeClashModal()">Cancel</button>
+          <button class="btn-danger" onclick="applyDespiteClash()">Apply Anyway</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Registration Slip Modal -->
+  <div id="slipModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>📋 Registration Slip</h2>
+        <button class="modal-close" onclick="closeSlipModal()">&times;</button>
+      </div>
+      <div id="slipBody" class="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notifications -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="dsa.js"></script>
+  <script src="app.js"></script>
+  <script src="ui.js"></script>
+</body>
+</html>>

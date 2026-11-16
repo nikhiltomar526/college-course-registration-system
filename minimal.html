@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Test Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    
+    .login-container {
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    
+    button {
+      background: #667eea;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background: #5568d3;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h1>🎓 Portal</h1>
+    <form>
+      <input type="text" placeholder="Roll No" value="240101">
+      <input type="password" placeholder="Password" value="student123">
+      <button type="submit">Login</button>
+    </form>
+    <p style="text-align: center; font-size: 12px; color: #999;">Test Page - If you see this, CSS is working!</p>
+  </div>
+  
+  <script>
+    console.log('Minimal test page loaded successfully');
+    document.querySelector('form').onsubmit = function(e) {
+      e.preventDefault();
+      alert('Form working! Server is OK.');
+    };
+  </script>
+</body>
+</html>

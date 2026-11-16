@@ -1,0 +1,220 @@
+{
+  "admin": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "programs": {
+    "BCA": [
+      [
+        "BCA101",
+        "Programming in C",
+        4
+      ],
+      [
+        "BCA102",
+        "Data Structures",
+        4
+      ],
+      [
+        "BCA103",
+        "Database Management System",
+        3
+      ],
+      [
+        "BCA104",
+        "Operating System",
+        3
+      ],
+      [
+        "BCA105",
+        "Computer Networks",
+        3
+      ],
+      [
+        "BCA106",
+        "Web Development",
+        3
+      ],
+      [
+        "BCA107",
+        "Software Engineering",
+        3
+      ]
+    ],
+    "B.Tech": [
+      [
+        "BTECH101",
+        "Programming in C++",
+        4
+      ],
+      [
+        "BTECH102",
+        "Data Structures",
+        4
+      ],
+      [
+        "BTECH103",
+        "Database Management System",
+        3
+      ],
+      [
+        "BTECH104",
+        "Operating System",
+        3
+      ],
+      [
+        "BTECH105",
+        "Computer Networks",
+        3
+      ],
+      [
+        "BTECH106",
+        "Software Engineering",
+        3
+      ]
+    ],
+    "B.Sc": [
+      [
+        "BSC101",
+        "Mathematics",
+        4
+      ],
+      [
+        "BSC102",
+        "Physics",
+        4
+      ],
+      [
+        "BSC103",
+        "Chemistry",
+        4
+      ],
+      [
+        "BSC104",
+        "Computer Fundamentals",
+        3
+      ],
+      [
+        "BSC105",
+        "Environmental Science",
+        2
+      ]
+    ],
+    "B.Sc Agriculture": [
+      [
+        "BSCAG101",
+        "Agronomy",
+        4
+      ],
+      [
+        "BSCAG102",
+        "Soil Science",
+        4
+      ],
+      [
+        "BSCAG103",
+        "Horticulture",
+        3
+      ],
+      [
+        "BSCAG104",
+        "Plant Pathology",
+        3
+      ],
+      [
+        "BSCAG105",
+        "Agricultural Economics",
+        3
+      ],
+      [
+        "BSCAG106",
+        "Entomology",
+        3
+      ]
+    ],
+    "BBA": [
+      [
+        "BBA101",
+        "Principles of Management",
+        4
+      ],
+      [
+        "BBA102",
+        "Business Economics",
+        3
+      ],
+      [
+        "BBA103",
+        "Financial Management",
+        4
+      ],
+      [
+        "BBA104",
+        "Marketing Management",
+        3
+      ],
+      [
+        "BBA105",
+        "Human Resource Management",
+        3
+      ]
+    ],
+    "B.Com": [
+      [
+        "BCOM101",
+        "Financial Accounting",
+        4
+      ],
+      [
+        "BCOM102",
+        "Business Law",
+        3
+      ],
+      [
+        "BCOM103",
+        "Business Economics",
+        3
+      ],
+      [
+        "BCOM104",
+        "Cost Accounting",
+        4
+      ],
+      [
+        "BCOM105",
+        "Income Tax",
+        3
+      ]
+    ]
+  },
+  "students": {
+    "nikhil": {
+      "student_id": "BCA202601",
+      "name": "nikhil",
+      "program": "BCA",
+      "password": "nikhil1234",
+      "registered": []
+    },
+    "arsh": {
+      "student_id": "BTECH202601",
+      "name": "arsh",
+      "program": "B.Tech",
+      "password": "arsh123",
+      "registered": []
+    },
+    "sachin": {
+      "student_id": "BSCAG202601",
+      "name": "sachin",
+      "program": "B.Sc Agriculture",
+      "password": "sachin123",
+      "registered": []
+    },
+    "ram": {
+      "name": "ram",
+      "program": "BCA",
+      "password": "ram123",
+      "fees": 50000,
+      "paid": 10000
+    }
+  }
+}
